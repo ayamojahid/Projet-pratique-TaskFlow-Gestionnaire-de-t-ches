@@ -181,3 +181,6 @@ return opt.Description.includes(searchValue)
 })
 }
 
+// export function Modifier(table) {
+
+// }

@@ -20,46 +20,30 @@ import {
 
 let cards = [
     {
-        title: "Creer un cour",
+        title: "reviser un cour",
         Description: "descrption des cour",
         Nomduresponsable: "mina",
         Priority: "low",
         Status: "todo",
-        DateLimite: "18/05/2003"
+        DateLimite: "2003-05-18"
     },
-      {
+    {
         title: "Creer un cour",
         Description: "desktop des cour",
         Nomduresponsable: "aya mjhd",
         Priority: "low",
-        Status: "done",
-        DateLimite: "18/05/2003"
+        Status: "inprogress",
+        DateLimite: "2003-05-18"
     },
     {
         title: "Creer un cour",
         Description: "descrption des cour",
         Nomduresponsable: "imane bkm",
         Priority: "low",
-        Status: "todo",
-        DateLimite: "12/05/2003"
-    },
-    {
-        title: "Creer un cour",
-        Description: "descrption des cour",
-        Nomduresponsable: "salma",
-        Priority: "low",
-        Status: "inprogress",
-        DateLimite: "12/05/2003"
-    },
-    {
-        title: "Creer un cour",
-        Description: "descrption des cour",
-        Nomduresponsable: "amina",
-        Priority: "low",
         Status: "done",
-        DateLimite: "12/05/2003"
+        DateLimite: "2003-05-12"
     }
-]
+];
 
 
 
@@ -199,3 +183,57 @@ btnReset.addEventListener("click" , ()=> {
     SelectNames.value="allNames";
     afficherTaches(cards)
 })
+
+
+
+
+let elementIndex;
+
+sectionCartes.addEventListener("click", (e)=>{
+    console.log(e.target.closest('.btnModifierAll'))
+    const elementModifier = e.target.closest('.btnModifierAll');
+
+    
+
+    if(elementModifier) {
+
+         addCardDialog.showModal();
+         document.querySelector('[name="btnAjoutermodal"]').hidden=true;
+        elementIndex=Number(elementModifier.dataset.index);
+        //  console.log(elementIndex)
+        console.log(cards[elementIndex]);
+        console.log(cards[elementIndex].DateLimite)
+        document.querySelector('[name=titre]').value = cards[elementIndex].title;
+        document.querySelector('[name=description]').value = cards[elementIndex].Description;
+        document.querySelector('[name=Responsable]').value = cards[elementIndex].Nomduresponsable;
+        document.querySelector('[name=Priorité]').value = cards[elementIndex].Priority;
+        document.querySelector('[name=Statut]').value = cards[elementIndex].Status;
+        document.querySelector('input[name=date]').value = cards[elementIndex].DateLimite;
+
+
+
+    }
+
+})
+
+
+
+
+const modifierBtnModal =  document.querySelector('[name="btnModifiermodal"]');
+
+
+
+modifierBtnModal.addEventListener("click", () => {
+
+    cards[elementIndex].title = document.querySelector('[name="titre"]').value;
+    cards[elementIndex].Description = document.querySelector('[name="description"]').value;
+    cards[elementIndex].Nomduresponsable = document.querySelector('[name="Responsable"]').value;
+    cards[elementIndex].Priority = document.querySelector('[name="Priorité"]').value;
+    cards[elementIndex].Status = document.querySelector('[name="Statut"]').value;
+    cards[elementIndex].DateLimite = document.querySelector('[name="date"]').value;
+
+    afficherTaches(cards);
+
+    addCardDialog.close();
+
+});
