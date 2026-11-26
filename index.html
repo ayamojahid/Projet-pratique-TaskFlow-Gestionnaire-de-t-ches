@@ -11,13 +11,15 @@
     <script src="js/main.js" type="module"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
 </head>
 
 <body class="min-h-screen bg-[#F5F6F1] text-[#30291F]">
 
     <!-- HEADER -->
     <header class="bg-[#394B32] text-white shadow-lg">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
 
             <div class="flex items-center gap-3">
                 <div class="bg-white/15 w-11 h-11 rounded-xl flex items-center justify-center">
@@ -39,13 +41,12 @@
     </header>
 
 
-    <main class="max-w-7xl mx-auto px-6 py-10">
-
+<main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         <!-- SECTION 1 -->
         <section id="section1">
 
             <div class="mb-8">
-                <h2 class="text-3xl font-bold text-[#394B32]">Mes tâches</h2>
+              <h2 class="text-2xl sm:text-3xl font-bold text-[#394B32]">Mes tâches</h2>
                 <p class="text-gray-500 mt-2">
                     Gérez et suivez toutes vos tâches au même endroit.
                 </p>
@@ -54,7 +55,7 @@
             <!-- FILTERS -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-8">
 
-                <div class="flex flex-wrap items-end gap-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 items-end gap-4">
 
                     <button id="btnAjouter"
                         class="bg-[#394B32] hover:bg-[#526A48] text-white px-5 py-3 rounded-xl font-semibold cursor-pointer transition-all duration-200 hover:shadow-md active:scale-95 flex items-center gap-2">
@@ -113,36 +114,20 @@
 
 
         <!-- TASK COLUMNS -->
-        <section class="cartes grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <!-- TODO -->
-            <div class="Todo w-full bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-h-[350px]">
-                <div class="bg-[#E9EFE5] border-b border-gray-100 p-5">
-                    <div class="flex items-center gap-3">
-                        <span class="w-3 h-3 rounded-full bg-orange-400"></span>
-                        <h3 class="font-bold text-lg text-[#394B32]">À faire</h3>
-                    </div>
-                </div>
+<section class="cartes ">       
+         <!-- TODO -->
+            <div class="Todo ">
+               
             </div>
 
             <!-- IN PROGRESS -->
-            <div class="inProgress w-full bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-h-[350px]">
-                <div class="bg-[#E8EFF7] border-b border-gray-100 p-5">
-                    <div class="flex items-center gap-3">
-                        <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-                        <h3 class="font-bold text-lg text-blue-900">En cours</h3>
-                    </div>
-                </div>
+            <div class="inProgress ">
+               
             </div>
 
             <!-- DONE -->
-            <div class="Done w-full bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden min-h-[350px]">
-                <div class="bg-[#E8F3EA] border-b border-gray-100 p-5">
-                    <div class="flex items-center gap-3">
-                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
-                        <h3 class="font-bold text-lg text-green-900">Terminées</h3>
-                    </div>
-                </div>
+            <div class="Done ">
+              
             </div>
 
         </section>
@@ -235,7 +220,7 @@
                         Ajouter
                     </button>
 
-                    <button id="btnModifiermodal" type="button" name="btnModifiermodal"
+                    <button id="btnModifiermodal" type="button" name="btnModifiermodal" hidden
                         class="flex-1 bg-[#394B32] hover:bg-[#526A48] text-white py-3 rounded-xl font-semibold cursor-pointer transition-all">
                         <i class="fa-solid fa-plus mr-2"></i>
                         Modifier

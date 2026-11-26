@@ -12,16 +12,17 @@ import {
 
 
 export function afficherTaches(table) {
-    console.log("helo")
+    // console.log("helo")
 
     divTodo.textContent = "";
     divInProgress.textContent = "";
     divDone.textContent = "";
 
-    divTodo.className = "w-1/3 bg-green-50 p-4 rounded-xl border border-green-200 shadow-sm font-bold text-gray-800";
-    divInProgress.className = "w-1/3 bg-blue-50 p-4 rounded-xl border border-blue-200 shadow-sm font-bold text-gray-800";
-    divDone.className = "w-1/3 bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm font-bold text-gray-800";
+   divTodo.className = "w-full min-w-0 bg-green-50 p-4 rounded-xl border border-green-200 shadow-sm font-bold text-gray-800";
 
+divInProgress.className = "w-full min-w-0 bg-blue-50 p-4 rounded-xl border border-blue-200 shadow-sm font-bold text-gray-800";
+
+divDone.className = "w-full min-w-0 bg-gray-50 p-4 rounded-xl border border-gray-200 shadow-sm font-bold text-gray-800";
 
     const titleTodo = document.createElement("span");
     titleTodo.textContent =`Todo(${table.filter(opt=>opt.Status ==="todo").length})`;
@@ -42,7 +43,7 @@ divDone.append(titleDone);
 
 
 
-    sectionCartes.className = "flex w-full gap-5 p-4 items-start";
+   sectionCartes.className = "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 w-full min-w-0 p-4 items-start";
 
     sectionCartes.append(divTodo, divInProgress, divDone)
 
@@ -137,8 +138,8 @@ export function ajouterTache(table) {
 
     table.push(tache);
     afficherTaches(table);
-    console.log(tache)
-    console.log(table)
+    // console.log(tache)
+    // console.log(table)
 }
 
 
@@ -175,12 +176,19 @@ SelectNames.append(OptionNames);
 
 export function SearchNames(table) {
 const searchValue = search.value.trim().toLowerCase();
-console.log(searchValue);
+// console.log(searchValue);
 return table.filter((opt)=>{
 return opt.Description.includes(searchValue)
 })
 }
 
-// export function Modifier(table) {
 
-// }
+
+export function saveTasks(table) {
+    localStorage.setItem("Tasks" , JSON.stringify(table))
+}
+
+export function loadTasks() {
+    const data = localStorage.getItem('Tasks');
+    return data ? JSON.parse(data) : [] ;
+}

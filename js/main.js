@@ -18,32 +18,41 @@ import {
     section1
 } from './dom.js'
 
-let cards = [
-    {
-        title: "reviser un cour",
-        Description: "descrption des cour",
-        Nomduresponsable: "mina",
-        Priority: "low",
-        Status: "todo",
-        DateLimite: "2003-05-18"
-    },
-    {
-        title: "Creer un cour",
-        Description: "desktop des cour",
-        Nomduresponsable: "aya mjhd",
-        Priority: "low",
-        Status: "inprogress",
-        DateLimite: "2003-05-18"
-    },
-    {
-        title: "Creer un cour",
-        Description: "descrption des cour",
-        Nomduresponsable: "imane bkm",
-        Priority: "low",
-        Status: "done",
-        DateLimite: "2003-05-12"
-    }
-];
+import { saveTasks, loadTasks } from "./functions.js";
+
+
+let cards = loadTasks();
+
+if (cards.length === 0) {
+    cards = [
+        {
+            title: "reviser un cour",
+            Description: "descrption des cour",
+            Nomduresponsable: "mina",
+            Priority: "low",
+            Status: "todo",
+            DateLimite: "2003-05-18"
+        },
+        {
+            title: "Creer un cour",
+            Description: "desktop des cour",
+            Nomduresponsable: "aya mjhd",
+            Priority: "low",
+            Status: "inprogress",
+            DateLimite: "2003-05-18"
+        },
+        {
+            title: "Creer un cour",
+            Description: "descrption des cour",
+            Nomduresponsable: "imane bkm",
+            Priority: "low",
+            Status: "done",
+            DateLimite: "2003-05-12"
+        }
+    ];
+
+    saveTasks(cards);
+}
 
 
 
@@ -63,6 +72,7 @@ btnAnnulerModal.addEventListener("click" , ()=>{
 formAddDialog.addEventListener("submit" , (e)=>{
 e.preventDefault();
 ajouterTache(cards);
+saveTasks(cards);
 afficherNames(cards);
 
 addCardDialog.close();
@@ -77,7 +87,8 @@ sectionCartes.addEventListener("click" , (e)=>{
         const indexElement = e.target.dataset.index;
     //    console.log(e.target.dataset.index)
        cards.splice(indexElement , 1)
-       console.log(cards)
+       saveTasks(cards); 
+    //    console.log(cards)
        afficherTaches(cards)
     }
 })
@@ -126,11 +137,11 @@ else{
 })
 
 const filterStatus = document.querySelector("#filterStatus");
-console.log(filterStatus)
+// console.log(filterStatus)
 
 filterStatus.addEventListener("change" , (e)=>{
 const status1 = e.target.value;
-console.log(status1)
+// console.log(status1)
     
 if(status1 === "all") {
     afficherTaches(cards)
@@ -138,7 +149,7 @@ if(status1 === "all") {
 
 else{
 const result = filterTache(cards, status1);
-   console.log(result);
+//    console.log(result);
     afficherTaches(result)
 }
 })
@@ -147,14 +158,14 @@ const result = filterTache(cards, status1);
 
 SelectNames.addEventListener("change" , (e)=>{
     const value = e.target.value;
-console.log(value)
+// console.log(value)
 
 
 if(value === "allNames") {
 afficherTaches(cards)}
 else {
     const tablenamesFiltre = filtrerTachesByNames(cards , value);
-    console.log(tablenamesFiltre)
+    // console.log(tablenamesFiltre)
     afficherTaches(tablenamesFiltre)
 }
 })
@@ -163,9 +174,9 @@ else {
 search.addEventListener("input" , ()=>{
     const searchElement = SearchNames(cards);
     afficherTaches(searchElement)
-    console.log(searchElement)
+    // console.log(searchElement)
 if(searchElement.length === 0 ){
-    console.log("Aucune tâche trouvée");
+    // console.log("Aucune tâche trouvée");
 
 section1.querySelector(".messageErrorSearch")?.remove()
 
@@ -199,10 +210,11 @@ sectionCartes.addEventListener("click", (e)=>{
 
          addCardDialog.showModal();
          document.querySelector('[name="btnAjoutermodal"]').hidden=true;
+         document.querySelector('[name="btnModifiermodal"]').hidden=false;
         elementIndex=Number(elementModifier.dataset.index);
         //  console.log(elementIndex)
-        console.log(cards[elementIndex]);
-        console.log(cards[elementIndex].DateLimite)
+        // console.log(cards[elementIndex]);
+        // console.log(cards[elementIndex].DateLimite)
         document.querySelector('[name=titre]').value = cards[elementIndex].title;
         document.querySelector('[name=description]').value = cards[elementIndex].Description;
         document.querySelector('[name=Responsable]').value = cards[elementIndex].Nomduresponsable;
